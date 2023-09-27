@@ -19,7 +19,7 @@ const Feed = () => {
     const [searchText, setSearchText] = useState('');
     const [posts, setPosts] = useState([]);
 
-    const handleSearchChange = event_ => {};
+    // const handleSearchChange = event_ => {};
 
     useEffect(() => {
         (async () => {
@@ -36,7 +36,7 @@ const Feed = () => {
                     type='text'
                     placeholder='Search for a tag or a username'
                     value={searchText}
-                    onChange={handleSearchChange}
+                    // onChange={handleSearchChange}
                     required
                     className='search_input peer'
                 />
