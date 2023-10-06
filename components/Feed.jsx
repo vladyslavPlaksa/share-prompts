@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import PromptCard from './PromptCard';
 
@@ -15,20 +15,12 @@ const PromptCardList = ({ data, handleTagClick }) => {
     );
 };
 
-const Feed = () => {
+const Feed = ({ data }) => {
     const [searchText, setSearchText] = useState('');
-    const [posts, setPosts] = useState([]);
 
-    // const handleSearchChange = event_ => {};
+    // eslint-disable-next-line unicorn/consistent-function-scoping
+    const handleSearchChange = event_ => {};
 
-    useEffect(() => {
-        (async () => {
-            const response = await fetch('/api/prompt');
-            const data = await response.json();
-
-            setPosts(data);
-        })();
-    }, []);
     return (
         <section className='feed'>
             <form className='flex-center relative w-full'>
@@ -36,12 +28,12 @@ const Feed = () => {
                     type='text'
                     placeholder='Search for a tag or a username'
                     value={searchText}
-                    // onChange={handleSearchChange}
+                    onChange={handleSearchChange}
                     required
                     className='search_input peer'
                 />
             </form>
-            <PromptCardList data={posts} handleTagClick={() => {}} />
+            <PromptCardList data={data} handleTagClick={() => {}} />
         </section>
     );
 };

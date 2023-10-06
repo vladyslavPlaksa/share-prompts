@@ -1,6 +1,23 @@
 import Feed from '@components/Feed';
 
-const Home = () => {
+async function getData() {
+    const response = await fetch(
+        process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
+            ? 'http://localhost:3000/api/prompt'
+            : `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/prompt}`,
+        { next: { revalidate: 10 } }
+    );
+
+    if (!response.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error('Failed to fetch data');
+    }
+
+    return response.json();
+}
+
+const Home = async () => {
+    const data = await getData();
     return (
         <section className='flex-center w-full flex-col'>
             <h1 className='head_text text-center'>
@@ -13,7 +30,7 @@ const Home = () => {
                 create and share creative prompts
             </p>
 
-            <Feed />
+            <Feed data={data} />
         </section>
     );
 };
