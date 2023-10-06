@@ -4,7 +4,7 @@ async function getData() {
     const response = await fetch(
         process.env.NEXT_PUBLIC_VERCEL_ENV === 'development'
             ? 'http://localhost:3000/api/prompt'
-            : `${process.env.NEXT_PUBLIC_VERCEL_URL}/api/prompt}`,
+            : `https://${process.env.NEXT_PUBLIC_VERCEL_URL}/api/prompt}`,
         { next: { revalidate: 10 } }
     );
 
