@@ -132,12 +132,16 @@
         ],
         "import/extensions": [".js", ".mjs", ".jsx", ".ts", ".tsx"],
         "import/resolver": {
-            "node": { "extensions": [".js", ".mjs", ".jsx", ".ts", ".tsx"] },
             "alias": {
                 "map": [
-                    ["@components", "./components"],
-                    ["@styles", "./styles"]
-                ]
+                    ["@app", "./app"],
+                    ["@components", "./components/"],
+                    ["@models", "./models"],
+                    ["@public", "./public"],
+                    ["@styles", "./styles"],
+                    ["@utils", "./utils"]
+                ],
+                "extensions": [".ts", ".js", ".jsx", ".json", ".css"]
             }
             // "webpack": {
             //     "config": "./config/webpack.config.js"

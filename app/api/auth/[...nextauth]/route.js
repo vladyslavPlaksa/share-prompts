@@ -1,6 +1,5 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
-/* eslint-disable import/no-unresolved */
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
