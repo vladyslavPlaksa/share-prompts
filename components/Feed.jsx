@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import PromptCard from './PromptCard';
 
@@ -15,11 +15,28 @@ const PromptCardList = ({ data, handleTagClick }) => {
     );
 };
 
-const Feed = ({ data }) => {
+const Feed = () => {
     const [searchText, setSearchText] = useState('');
+    const [data, setData] = useState([]);
 
     // eslint-disable-next-line unicorn/consistent-function-scoping
     const handleSearchChange = event_ => {};
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await fetch('/api/prompt');
+
+            if (!response.ok) {
+                // This will activate the closest `error.js` Error Boundary
+                throw new Error('Failed to fetch data');
+            }
+
+            const posts = await response.json();
+
+            setData(posts);
+        };
+        getData();
+    }, []);
 
     return (
         <section className='feed'>
